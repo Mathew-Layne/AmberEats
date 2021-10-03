@@ -21,17 +21,22 @@ use App\Http\Controllers\MealChoiceController;
 
 Route::get('/', [UserController::class, 'home']);
 
+Route::get('/menu', [UserController::class, 'getMenu']);
+
 Route::get('/register', [UserController::class, 'getRegister']);
 Route::post('/register', [UserController::class, 'setRegister']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'setLogin']);
 
-Route::post('/logout', [LoginController::class, 'Logout']);
+Route::get('/logout', [LoginController::class, 'Logout']);
 
 Route::group(['middleware' => 'auth'], function(){
 
     Route::get('order', [MealOptionController::class, 'getOrder']);
     Route::post('order', [MealOptionController::class, 'setOrder']);
+
+    Route::get('order/view', [MealChoiceController::class, 'myChoice']);
+
 });
 

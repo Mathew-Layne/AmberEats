@@ -12,7 +12,8 @@
 <body>
     <div class="w-4/12 flex m-auto my-10">
         
-        <form id="form" class="w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form method="post" action="{{ url('/order') }}" id="form" class="w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            @csrf
             <div><img src="images/logo.png" width="10%"></div>
             <br>
             <h1 class="block text-gray-700 font-bold mb-2 text-2xl text-center">Place your Order</h1>

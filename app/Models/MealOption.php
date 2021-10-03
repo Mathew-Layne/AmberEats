@@ -12,4 +12,9 @@ class MealOption extends Model
     public function category(){
         return $this->belongsTo(MealCategory::class);
     }
+
+    public function mealChoices(){
+        return $this->hasMany(MealChoice::class);
+    }
+
 }
