@@ -23,8 +23,8 @@
                         <th class="text-left p-3 px-3">Last Name</th>
                         <th class="text-left p-3 px-5">Meat</th>
                         <th class="text-left p-3 px-5">Starch</th>
-                        <th class="text-left p-3 px-5">Vegetable</th>
                         <th class="text-left p-3 px-5">Beverage</th>
+                        <th class="text-left p-3 px-5">Vegetable</th>
                         <th class="text-left p-3 px-5">Action</th>
                     </tr>
                     @foreach($data as $info)
@@ -32,10 +32,11 @@
                     <tr class="border-b bg-gray-100 hover:bg-gray-200">
                         <td class="p-3 px-5">{{ $info['first_name'] }}</td>
                         <td class="p-3 px-5">{{ $info['last_name'] }}</td>
-                        {{-- <td class="p-3 px-5">{{ $info->dob }}</td>
-                        <td class="p-3 px-5">{{ $info->email }}</td>
-                        <td class="p-3 px-5">{{ $info->username }}</td>
-                        <td class="p-3 px-5">{{ $info->phone_number }}</td> --}}
+                        @foreach ($info['choice'] as $info)
+                          <td class="p-3 px-5">{{ $info['meal_option']['option_name'] }}</td>  
+                        @endforeach
+                        
+                        
                         <td class="p-3 px-5">
                             {{-- <button type="button"
                         class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Activate</button> --}}

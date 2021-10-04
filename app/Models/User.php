@@ -45,6 +45,6 @@ class User extends Authenticatable
     ];
 
     public function choice(){
-        return $this->hasMany(MealChoice::class);
+        return $this->hasMany(MealChoice::class)->with('mealOption');
     }
 }

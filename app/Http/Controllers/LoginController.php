@@ -22,7 +22,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            dd(session()->put('isAdmin', Auth::user()->isAdmin));
+            session()->put('isAdmin', Auth::user()->isAdmin);
         
             return redirect('/');
 
