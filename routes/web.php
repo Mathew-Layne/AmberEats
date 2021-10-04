@@ -21,7 +21,7 @@ use App\Http\Controllers\MealChoiceController;
 
 Route::get('/', [UserController::class, 'home']);
 
-Route::get('/menu', [UserController::class, 'getMenu']);
+Route::get('/menu', [UserController::class, 'menu']);
 
 Route::get('/register', [UserController::class, 'getRegister']);
 Route::post('/register', [UserController::class, 'setRegister']);
@@ -30,6 +30,16 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'setLogin']);
 
 Route::get('/logout', [LoginController::class, 'Logout']);
+
+Route::group(['middleware' => 'admin'], function(){
+    Route::get('admin/orders', [AdminController::class, 'viewOrders']);
+
+    Route::get('category/add', [AdminController::class, 'getcategory']);
+    Route::post('category/add', [AdminController::class, 'setcategory']);
+
+    Route::get('option/add', [AdminController::class, 'getoption']);
+    Route::post('option/add', [AdminController::class, 'setoption']);
+});
 
 Route::group(['middleware' => 'auth'], function(){
 

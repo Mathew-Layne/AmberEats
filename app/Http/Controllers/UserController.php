@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\MealCategory;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -34,5 +35,12 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/login');
+    }
+
+    public function menu(){
+
+        $orders = MealCategory::with('options')->get()->toArray();
+        
+        return view('menu', compact('orders'));
     }
 }
