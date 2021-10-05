@@ -34,11 +34,11 @@ Route::get('/logout', [LoginController::class, 'Logout']);
 Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/orders', [AdminController::class, 'viewOrders']);
 
-    Route::get('category/add', [AdminController::class, 'getcategory']);
-    Route::post('category/add', [AdminController::class, 'setcategory']);
+    Route::get('admin/add/category', [AdminController::class, 'getcategory']);
+    Route::post('admin/add/category', [AdminController::class, 'setcategory']);
 
-    Route::get('option/add', [AdminController::class, 'getoption']);
-    Route::post('option/add', [AdminController::class, 'setoption']);
+    Route::get('admin/add/option', [AdminController::class, 'getoption']);
+    Route::post('admin/add/option', [AdminController::class, 'setoption']);
 });
 
 Route::group(['middleware' => 'auth'], function(){
@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('order', [MealOptionController::class, 'getOrder']);
     Route::post('order', [MealOptionController::class, 'setOrder']);
 
-    Route::get('order/view', [MealChoiceController::class, 'myChoice']);
+    Route::get('view/order', [MealChoiceController::class, 'myChoice']);
 
 });
 

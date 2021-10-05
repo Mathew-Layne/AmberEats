@@ -3,32 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\MealCategory;
+use App\Models\User;
+use App\Models\MealOption;
 
 class AdminController extends Controller
 {
     public function viewOrders(){
-        return view('admin');
+        session()->put('admin', 'orders');
+
+        $orders = User::with('choice')        
+        ->get()
+        ->toArray();
+
+        return view('myorder', compact('orders'));
     }
     
 
     public function getCategory()
     {
-        return view('admin');
+        session()->put('admin', 'category');
+        return view('order');
     }
 
-    public function setCategory()
+    public function setCategory(Request $request)
     {
-        return view('admin');
+        $category = new MealCategory();
+        $category->category_name = $request->category;
+        $category->save();
+        return redirect('/');
     }
 
 
     public function getOption()
     {
-        return view('admin');
+        session()->put('admin', 'option');
+        $category = MealCategory::all();
+        return view('order', compact('category'));
     }
 
-    public function setOption()
+    public function setOption(Request $request)
     {
-        return view('admin');
+        $option = new MealOption();
+        $option->meal_category_id = $request->category_id;
+        $option->option_name = $request->option;
+        $option->save();
+        return redirect('/');
     }
 }
